@@ -1,6 +1,9 @@
 #ifndef SIMPLELIST_L
 #define SIMPLELIST_L
+
 #include <stdio.h>
+#include <stdlib.h>
+
 #define GROWTH_FACTOR 5
 template<typename T>
 class SimpleList {
@@ -43,7 +46,7 @@ public:
 	int get_array_size(){
 		return this->array_size;
 	}
-	
+
 	int index_of(T t){
 		for(int i=0; i < this->pointer; i++){
 			if (this->data[i] == t){
