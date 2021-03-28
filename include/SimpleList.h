@@ -43,6 +43,15 @@ public:
 	int get_array_size(){
 		return this->array_size;
 	}
+	
+	int index_of(T t){
+		for(int i=0; i < this->pointer; i++){
+			if (this->data[i] == t){
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	void resize_to(int size){
 		//printf("c: %d", min);
