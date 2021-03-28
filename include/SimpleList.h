@@ -34,6 +34,12 @@ public:
 	void add(T t){
 		put(this->pointer, t);
 	}
+	T pop(){
+		if (this->pointer < 1){
+			this->pointer = 1;
+		}
+		return this->data[--this->pointer];
+	}
 
 	T get(int index){
 		return this->data[index];

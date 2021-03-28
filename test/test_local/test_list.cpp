@@ -17,5 +17,19 @@ void test_list(void){
     for(int i=0; i<list.get_size(); i++){
         TEST_ASSERT_EQUAL_INT(i, list.get(i));
     }
+    
+    SimpleList <int>list_new(5);
+    list_new.add(1);
+    list_new.add(2);
+    list_new.add(3);
+    list_new.add(4);
+    list_new.add(5);
+    TEST_ASSERT_EQUAL_INT(5, list_new.pop());
+    TEST_ASSERT_EQUAL_INT(4, list_new.pop());
+    TEST_ASSERT_EQUAL_INT(3, list_new.pop());
+    TEST_ASSERT_EQUAL_INT(2, list_new.pop());
+    TEST_ASSERT_EQUAL_INT(1, list_new.pop());
+    TEST_ASSERT_EQUAL_INT(1, list_new.pop());
+
 
 }
