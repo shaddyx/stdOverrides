@@ -1,5 +1,5 @@
 {
     "name": "StdOverrides",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "The library to override some std types/helpers that exists in spp::std"
 }

@@ -31,5 +31,10 @@ void test_list(void){
     TEST_ASSERT_EQUAL_INT(1, list_new.pop());
     TEST_ASSERT_EQUAL_INT(1, list_new.pop());
 
+    list_new.clear();
+    list_new.add(1024);
+    TEST_ASSERT_EQUAL_INT(1, list_new.get_size());
+    TEST_ASSERT_EQUAL_INT(5, list_new.get_array_size());
+    TEST_ASSERT_EQUAL_INT(1024, list_new.pop());
 
 }

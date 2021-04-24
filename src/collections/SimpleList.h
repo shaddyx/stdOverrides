@@ -30,6 +30,11 @@ public:
 			this->pointer = index + 1;
 		}
 	}
+	
+	void clear(){
+		resize_to(0);
+		resize_to(GROWTH_FACTOR);
+	}
 
 	void add(T t){
 		put(this->pointer, t);
