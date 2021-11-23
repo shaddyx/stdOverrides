@@ -39,6 +39,15 @@ public:
 	void add(T t){
 		put(this->pointer, t);
 	}
+	void remove(int index){
+		if (index >= this -> pointer){
+			return;
+		}
+		for (int i = index + 1; i < this -> pointer; i++){
+			this -> data [i - 1] = this -> data[i];
+		}
+		this -> pointer --;
+	}
 	T pop(){
 		if (this->pointer < 1){
 			this->pointer = 1;

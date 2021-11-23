@@ -1,6 +1,7 @@
 #include <unity.h>
 #include "collections/SimpleList.h"
-void test_list(void){
+
+void test_resize(){
     SimpleList <int>list(10);
     for(int i=0; i<1022; i++){
         list.add(i);
@@ -17,7 +18,10 @@ void test_list(void){
     for(int i=0; i<list.get_size(); i++){
         TEST_ASSERT_EQUAL_INT(i, list.get(i));
     }
-    
+}
+
+void test_pop(){
+
     SimpleList <int>list_new(5);
     list_new.add(1);
     list_new.add(2);
@@ -36,5 +40,29 @@ void test_list(void){
     TEST_ASSERT_EQUAL_INT(1, list_new.get_size());
     TEST_ASSERT_EQUAL_INT(5, list_new.get_array_size());
     TEST_ASSERT_EQUAL_INT(1024, list_new.pop());
+}
 
+
+void test_remove(){
+
+    SimpleList <int>list_new(5);
+    list_new.add(1);
+    list_new.add(2);
+    list_new.add(3);
+    list_new.add(4);
+    list_new.add(5);
+
+    list_new.remove(1);
+    TEST_ASSERT_EQUAL_INT(4, list_new.get_size());
+    TEST_ASSERT_EQUAL_INT(1, list_new.get(0));
+    TEST_ASSERT_EQUAL_INT(3, list_new.get(1));
+    list_new.remove(3);
+    list_new.remove(3);
+    TEST_ASSERT_EQUAL_INT(3, list_new.get_size());
+}
+
+void test_list(void){
+    RUN_TEST(test_resize);
+    RUN_TEST(test_pop);
+    RUN_TEST(test_remove);
 }
