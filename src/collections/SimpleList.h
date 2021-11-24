@@ -17,6 +17,14 @@ public:
 	SimpleList(int initial, int growth_factor){
 		init(initial, growth_factor);
 	}
+	
+	SimpleList(const SimpleList<T> &old_list){
+		init(old_list.pointer, old_list.growth_factor);
+		for (int i=0; i<old_list.pointer; i++){
+			add(old_list.data [i]);
+		}
+
+	}
 	~SimpleList(){
 		free(this->data);
 	}

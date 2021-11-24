@@ -61,8 +61,23 @@ void test_remove(){
     TEST_ASSERT_EQUAL_INT(3, list_new.get_size());
 }
 
+void test_copy(){
+
+    SimpleList <int>list_new(5);
+    list_new.add(1);
+    list_new.add(2);
+    list_new.add(3);
+    list_new.add(4);
+    list_new.add(5);
+
+    SimpleList <int>list_new_1 = list_new;
+    TEST_ASSERT_EQUAL_INT(5, list_new_1.get_size());
+}
+
+
 void test_list(void){
     RUN_TEST(test_resize);
     RUN_TEST(test_pop);
     RUN_TEST(test_remove);
+    RUN_TEST(test_copy);
 }
