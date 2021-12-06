@@ -26,7 +26,7 @@ public:
 
 	}
 	~SimpleList(){
-		free(this->data);
+		delete this->data;
 	}
 	
 	void put(int index, T t){
@@ -90,7 +90,7 @@ public:
 		if (min > size){
 			min = size;
 		}
-		T* tmp = (T*) malloc(sizeof(T) * size);
+		T* tmp = new T[sizeof(T) * size];
 		for (int i=0; i<min; i++){
 			tmp[i] = this->data[i];
 		}
