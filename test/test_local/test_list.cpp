@@ -82,7 +82,7 @@ class MyClass{
             __references ++;
             this->a = a;
             printf("init called[%d]: %d\n", a,  __references);
-            
+
         }
 
         MyClass(){

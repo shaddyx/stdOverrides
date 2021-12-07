@@ -31,7 +31,7 @@ public:
 	T& operator[](int index){
 		return get(index);
 	}
-	
+
 	SimpleList<T>& operator = (const SimpleList<T>& old_list){
 		deallocator();
 		init(old_list.pointer, old_list.growth_factor);
