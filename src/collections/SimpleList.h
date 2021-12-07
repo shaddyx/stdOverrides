@@ -23,10 +23,11 @@ public:
 		for (int i=0; i<old_list.pointer; i++){
 			add(old_list.data [i]);
 		}
-
 	}
 	~SimpleList(){
-		delete this->data;
+		if (this->data){
+			delete this->data;
+		}
 	}
 	
 	void put(int index, T t){
@@ -85,16 +86,15 @@ public:
 	}
 
 	void resize_to(int size){
-		//printf("c: %d", min);
 		int min = this->pointer;
 		if (min > size){
 			min = size;
 		}
-		T* tmp = new T[sizeof(T) * size];
+		T* tmp = new T[size];
 		for (int i=0; i<min; i++){
 			tmp[i] = this->data[i];
 		}
-		free(this->data);
+		delete this->data;
 		this->data = tmp;
 		this->array_size = size;
 		if (this->pointer >= size){
@@ -105,7 +105,8 @@ private:
 	void init(int initial, int growth_factor){
 		this->array_size = initial;
 		this->growth_factor = growth_factor;
-		this->data = (T*) malloc(sizeof(T) * initial);
+		this->data = new T[initial];
+		printf("cll%d\n", initial);
 	}
 	int array_size = 0;
 	int pointer = 0;
