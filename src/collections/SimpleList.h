@@ -21,14 +21,25 @@ public:
 	SimpleList(const SimpleList<T> &old_list){
 		init(old_list.pointer, old_list.growth_factor);
 		for (int i=0; i<old_list.pointer; i++){
-			add(old_list.data [i]);
+			add(old_list.data[i]);
 		}
-
 	}
 	~SimpleList(){
-		delete this->data;
+		deallocator();
+	}
+
+	T& operator[](int index){
+		return get(index);
 	}
 	
+	SimpleList<T>& operator = (const SimpleList<T>& old_list){
+		deallocator();
+		init(old_list.pointer, old_list.growth_factor);
+		for (int i=0; i<old_list.pointer; i++){
+			add(old_list.data[i]);
+		}
+	}
+
 	void put(int index, T t){
 		if (index > this->array_size - 1){
 			this->resize_to(index + this->growth_factor);
@@ -85,16 +96,16 @@ public:
 	}
 
 	void resize_to(int size){
-		//printf("c: %d", min);
 		int min = this->pointer;
 		if (min > size){
 			min = size;
 		}
-		T* tmp = new T[sizeof(T) * size];
+		T* tmp = allocator(size);;
 		for (int i=0; i<min; i++){
 			tmp[i] = this->data[i];
 		}
-		free(this->data);
+		deallocator();
+
 		this->data = tmp;
 		this->array_size = size;
 		if (this->pointer >= size){
@@ -102,10 +113,18 @@ public:
 		}
 	}
 private:
+	T * allocator(int size){
+		return (T *) malloc(sizeof(T) * size);
+	}
+	void deallocator(){
+		if (this->data){
+			free(this->data);
+		}
+	}
 	void init(int initial, int growth_factor){
 		this->array_size = initial;
 		this->growth_factor = growth_factor;
-		this->data = (T*) malloc(sizeof(T) * initial);
+		this->data = allocator(initial);
 	}
 	int array_size = 0;
 	int pointer = 0;

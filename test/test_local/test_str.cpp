@@ -4,7 +4,7 @@
 void test_str_cmp(){
     TEST_ASSERT_EQUAL(false, str_util::eq("aaa", "bbb"));
     TEST_ASSERT_EQUAL(true, str_util::eq("aaa", "aaa"));
-    char * str = "aaa";
+    char str[] = "aaa";
     TEST_ASSERT_EQUAL(true, str_util::eq("aaa", str));
 }
 
