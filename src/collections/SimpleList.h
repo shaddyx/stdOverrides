@@ -133,9 +133,3 @@ private:
 };
 
 #endif
-
-/*
-|| @changelog
-|| | 1.0 2009-07-13 - Alexander Brevig : Initial Release
-|| #
-*/
