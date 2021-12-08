@@ -33,6 +33,9 @@ public:
 	}
 
 	SimpleList<T>& operator = (const SimpleList<T>& old_list){
+		if (old_list == this){
+			return this;
+		}
 		deallocator();
 		init(old_list.pointer, old_list.growth_factor);
 		for (int i=0; i<old_list.pointer; i++){
