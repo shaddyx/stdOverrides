@@ -3,8 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "memory/allocator.h"
+#include "overrides/std_overrides.h"
 
 #define GROWTH_FACTOR 5
+
 template<typename T>
 class SimpleList {
 public:
@@ -67,7 +70,9 @@ public:
 		}
 		for (int i = index + 1; i < this -> pointer; i++){
 			this -> data [i - 1] = this -> data[i];
+			std_overrides::Allocator<T>::destroy(&this->data[i]);
 		}
+		std_overrides::Allocator<T>::destroy(&this->data[pointer]);
 		this -> pointer --;
 	}
 	T pop(){
@@ -121,7 +126,10 @@ private:
 	}
 	void deallocator(){
 		if (this->data){
-			free(this->data);
+			for (int i=0; i<this->get_size(); i++){
+				std_overrides::Allocator<T>::destroy(&this -> data[i]);
+			}
+			std_overrides::Allocator<T>::deallocate(this->data);
 		}
 	}
 	void init(int initial, int growth_factor){
